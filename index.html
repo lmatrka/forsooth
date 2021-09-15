@@ -1,0 +1,58 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <title>scratch</title>
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="style.css" media="screen" charset="utf-8">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+Double+Pica:ital@0;1&display=swap" rel="stylesheet">
+
+    </head>
+
+    <body>
+
+        <header>
+            <section class="container">
+              <a href="#"><h1>Forsooth</h1></a>
+              <nav>
+                <ul>
+                  <li><a href="#">About</a></li>
+                  <li><a href="#">Reset</a></li>
+                </ul>
+              </nav>
+            </section>
+        </header>
+
+        <div id="upper" class="container">
+            <section id="playerOptions" class="halfWidth">
+                <h3>Role Assignment Options</h3>
+                <form>
+                    <label for="players">How Many Players?</label>
+                    <input type="text" id="players" name="players"><br>
+                    <input type="radio" id="single" name="duplicateRoles">
+                    <label for="single">Players can only play one role</label><br>
+                    <input type="radio" id="minor" name="duplicateRoles">
+                    <label for="minor">Players can only play one major role (in addition to other minor roles)</label><br>
+                    <input type="radio" id="multiple" name="duplicateRoles">
+                    <label for="multiple">Players can play multiple roles</label>
+                  </form>
+            </section>
+            <section id="playOptions" class="halfWdith">
+                <h3>Available Plays</h3>
+                <ul id="playList">
+
+                </ul>
+            </section>
+        </div>
+
+
+
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+          <script src="scratch1.js"></script>
+    </body>
+</html>

@@ -1,0 +1,67 @@
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+header {
+    background-color: #FE052C;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: inline-block;
+  }
+
+  header h1 {
+    color: #FFF;
+    font-family: 'IM Fell Double Pica', serif;
+    font-size: 40px;
+    padding: 10px 2%;
+    margin: 0;
+    width: 16%;
+    float: left;
+    padding-left: 0;
+  }
+
+  header nav {
+    padding: 10px 2%;
+    width: 76%;
+    float: right;
+    text-align: right;
+    line-height: 30px;
+    margin-top: 0;
+    position: relative;
+    vertical-align: middle;
+  }
+
+  header ul {
+      margin: 0px;
+  }
+
+  header li {
+      max-width: 200px;
+      display: inline;
+  }
+
+  #upper {
+    margin-top: 80px;
+    display: flex;
+  }
+
+
+  .halfWidth {
+      width: 500px;
+      height: 400px;
+      /* background-color: grey; */
+  }
+
+  .checkmark {
+      float: right;
+  }
+
+  ul {
+    /*overflow: scroll;*/
+  }
+
+  
+
