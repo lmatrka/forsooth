@@ -1,4 +1,7 @@
+//Enter a Messenger, with two heads and a hand
+
 const plays = [];
+let currentPlay;
 let playerCount = 0;
 const players = [];
 //let lines = new Array(5).fill(0).map(() => new Array(15));
@@ -34,7 +37,8 @@ fetch("https://gist.githubusercontent.com/lmatrka/a78299e39648e7185344203d999f8e
           all: [],
           major: [],
           minor: []
-        }
+        },
+        fullyLoaded: false
       };
       playObj.lines.forEach(line => {
         if(line.speaker !== ""){
@@ -76,7 +80,6 @@ function sortPlays(){
   const single = document.getElementById('single');
   const minor = document.getElementById('minor');
   const multiple = document.getElementById('multiple');
-  console.log(playerCount);
   plays.forEach(play => {
     const title = document.createElement('li');
     title.innerHTML = `${play.title} - ${play.characters.all.length} characters (${play.characters.major.length}/${play.characters.minor.length})`;
@@ -94,7 +97,13 @@ function sortPlays(){
 }
 
 function loadPlay(play){
-  indexScenes(play);
+  currentPlay = play;
+  if (currentPlay.fullyLoaded === false){
+    indexScenes(currentPlay);
+    currentPlay.characters.all = play.characters.all.map(x => [x]);
+    currentPlay.characters.all.forEach(charArray => {loadCharacter(charArray)});
+    currentPlay.fullyLoaded = true;
+  }
 }
 
 function indexScenes(play) {
@@ -108,15 +117,28 @@ function indexScenes(play) {
       }
     }
   });
+  play.sceneIndex.push(play.lines.length-1);
+}
+
+function loadCharacter(charArray){
+  let activeScenes = [];
+  let numLines = 0;
+  //let sceneCounter = 0;
+  for(let i = 0; i < currentPlay.sceneIndex.length; i++){
+    //sceneCounter++;
+    for(let j = currentPlay.sceneIndex[i]; j < currentPlay.sceneIndex[i+1]; j++){
+      if(currentPlay.lines[j].speaker === charArray[0]){
+        numLines++;
+        activeScenes.push(i+1);
+      }
+    }
+  }
+  activeScenes = activeScenes.filter((v, i, a) => a.indexOf(v) === i);
+  charArray.push(activeScenes, numLines);
+  console.log(charArray);
 }
 
 
-
-
-
-
-//  const sceneSearch = /(?<=\.)(.*?)(?=\.)/
-//Enter a Messenger, with two heads and a hand
 //Exit, pursued by a bear
 
 
