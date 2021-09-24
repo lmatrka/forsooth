@@ -26,27 +26,26 @@
                 </ul>
               </nav>
             </section>
-        </header>
+          </header>
 
         <div id="upper" class="container">
             <section id="playerOptions" class="halfWidth">
                 <h3>Role Assignment Options</h3>
-                <form>
+                <form name="optionsForm">
                     <label for="players">How Many Players?</label>
                     <input type="text" id="players" name="players"><br>
-                    <input type="radio" id="single" name="duplicateRoles">
+                    <input type="radio" id="single" name="duplicateRoles" checked>
                     <label for="single">Players can only play one role</label><br>
                     <input type="radio" id="minor" name="duplicateRoles">
                     <label for="minor">Players can only play one major role (in addition to other minor roles)</label><br>
                     <input type="radio" id="multiple" name="duplicateRoles">
-                    <label for="multiple">Players can play multiple roles</label>
+                    <label for="multiple">Players can play multiple roles</label><br>
+                    <input type="button" id="submit" value="Submit">
                   </form>
             </section>
             <section id="playOptions" class="halfWdith">
                 <h3>Available Plays</h3>
-                <ul id="playList">
-
-                </ul>
+                <ul id="playList"></ul>
             </section>
         </div>
 
