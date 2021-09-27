@@ -1,7 +1,7 @@
 //Enter a Messenger, with two heads and a hand
 
 const plays = [];
-const playerRoles = [];
+const playerScenes = [];
 const roleElements = [];
 let assignedRoleLists;
 let currentPlay;
@@ -151,10 +151,10 @@ function loadCharacter(charArray){
 function loadPlayers(num){
   for(let i=0; i < num; i++){
     const playerDiv = document.createElement('div');
-    playerDiv.innerHTML = `<input type="text" id="player" placeholder="player ${i+1}"><span> O</span><br>
+    playerDiv.innerHTML = `<input type="text" id="player" placeholder="player ${i+1}"><span><strong> +</strong></span><br>
     <ul id="#player${i}" class="assignedRoles"></ul>`;
     playerList.appendChild(playerDiv);
-    playerRoles.push([]);
+    playerScenes.push([]);
   }
   assignedRoleLists = document.querySelectorAll('#playerList ul');
 }
@@ -166,6 +166,7 @@ function loadRoles(play){
     role.addEventListener('click', function(){checkPlayers(index)} );
     roleElements.push([role, 'X']);
     roleList.appendChild(role);
+    console.log(charArray);
   });
 }
 
@@ -173,12 +174,17 @@ function checkPlayers(index){
   selectedRole = index;
   playerButtons = document.querySelectorAll('span');
   playerButtons.forEach((button, i) => {
-    button.style.color = 'red';
-    button.addEventListener('click', function(){
-      roleElements[selectedRole][1]=i; 
-      sortRoles();
-      this.removeEventListener('click', arguments.callee);
-    });
+    button.style.color = 'black';
+    if(!checkScenes(selectedRole, i)){
+
+      button.style.color = 'red';
+      button.addEventListener('click', function(){
+        roleElements[selectedRole][1]=i; 
+        sortRoles();
+        currentPlay.characters.all[selectedRole][1].forEach(scene => {playerScenes[i].push(scene)});
+        this.removeEventListener('click', arguments.callee);
+      });
+    }
   });
 }
 
@@ -194,10 +200,14 @@ function sortRoles(){
       assignedRoleLists[role[1]].appendChild(role[0]);
     }
   });
+  playerButtons = document.querySelectorAll('span');
+  playerButtons.forEach(button => {button.style.color = 'black'});
+}
 
+function checkScenes(role, player){
+  return playerScenes[player].some(r=> currentPlay.characters.all[role][1].includes(r));
 }
 
 
 //Exit, pursued by a bear
-
 
