@@ -1,13 +1,20 @@
 //Enter a Messenger, with two heads and a hand
 
 const plays = [];
+const playerRoles = [];
+const roleElements = [];
+let assignedRoleLists;
 let currentPlay;
 let playerCount = 0;
-const players = [];
+let selectedRole;
+let playerButtons;
 //let lines = new Array(5).fill(0).map(() => new Array(15));
-const playList = document.querySelector('#playList');
-const submitButton = document.querySelector('#submit');
-//submitButton.style.color = "red";
+const playList = document.getElementById('playList');
+const submitButton = document.getElementById('submit');
+const playTitle = document.querySelector('#playTitle h1');
+const playerList = document.getElementById('playerList');
+const roleList = document.getElementById('characterList');
+
 
 fetch("https://gist.githubusercontent.com/lmatrka/a78299e39648e7185344203d999f8e91/raw/094e11c43a7c37134cadc6f403ad5e74487315ab/shakespeare.json")
   .then((response) => {
@@ -98,12 +105,15 @@ function sortPlays(){
 
 function loadPlay(play){
   currentPlay = play;
+  playTitle.innerText = currentPlay.title;
+  loadPlayers(playerCount);
   if (currentPlay.fullyLoaded === false){
     indexScenes(currentPlay);
     currentPlay.characters.all = play.characters.all.map(x => [x]);
     currentPlay.characters.all.forEach(charArray => {loadCharacter(charArray)});
     currentPlay.fullyLoaded = true;
   }
+  loadRoles(currentPlay);
 }
 
 function indexScenes(play) {
@@ -135,7 +145,56 @@ function loadCharacter(charArray){
   }
   activeScenes = activeScenes.filter((v, i, a) => a.indexOf(v) === i);
   charArray.push(activeScenes, numLines);
-  console.log(charArray);
+  //console.log(charArray);
+}
+
+function loadPlayers(num){
+  for(let i=0; i < num; i++){
+    const playerDiv = document.createElement('div');
+    playerDiv.innerHTML = `<input type="text" id="player" placeholder="player ${i+1}"><span> O</span><br>
+    <ul id="#player${i}" class="assignedRoles"></ul>`;
+    playerList.appendChild(playerDiv);
+    playerRoles.push([]);
+  }
+  assignedRoleLists = document.querySelectorAll('#playerList ul');
+}
+
+function loadRoles(play){
+  play.characters.all.forEach((charArray, index) => {
+    const role = document.createElement('li');
+    role.innerHTML = `<strong>${charArray[0]},</strong> ${charArray[2]} lines`;
+    role.addEventListener('click', function(){checkPlayers(index)} );
+    roleElements.push([role, 'X']);
+    roleList.appendChild(role);
+  });
+}
+
+function checkPlayers(index){
+  selectedRole = index;
+  playerButtons = document.querySelectorAll('span');
+  playerButtons.forEach((button, i) => {
+    button.style.color = 'red';
+    button.addEventListener('click', function(){
+      roleElements[selectedRole][1]=i; 
+      sortRoles();
+      this.removeEventListener('click', arguments.callee);
+    });
+  });
+}
+
+function sortRoles(){
+  roleList.innerHTML = "";
+  assignedRoleLists.forEach(list => {
+    list.innerHTML = "";
+  });
+  roleElements.forEach(role => {
+    if(role[1] === 'X'){
+      roleList.appendChild(role[0]);
+    }else{
+      assignedRoleLists[role[1]].appendChild(role[0]);
+    }
+  });
+
 }
 
 
