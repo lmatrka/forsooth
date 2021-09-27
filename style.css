@@ -43,6 +43,14 @@ header li {
     display: inline;
 }
 
+li {
+  cursor: pointer;
+}
+
+span {
+  cursor: pointer;
+}
+
 #upper {
   margin-top: 80px;
   display: flex;
