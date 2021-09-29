@@ -76,20 +76,20 @@ header li {
     margin: 10px;
 }
 
-header li:nth-child(2) {
+/* header li:nth-child(2) {
   margin-left: 20px;
-}
+} */
 
-header li:nth-child(3) {
+header li:nth-child(1) {
   margin-right: 0px;
   margin-left: 85px;
 }
 
-header li:nth-child(4) {
+header li:nth-child(2) {
   color: darkred;
 }
 
-header li:nth-child(5) {
+header li:nth-child(3) {
   margin-right: 0px;
   margin-left: 0px;
   color: darkred;
@@ -117,7 +117,7 @@ input[type=button] {
 #username {
   margin-right: 0px;
   border-style: solid;
-  border-width: 3px;
+  border-width: 2px;
   border-color: darkred;
 }
 

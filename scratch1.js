@@ -1,4 +1,5 @@
 //Enter a Messenger, with two heads and a hand
+
 const firebaseConfig = {
   apiKey: 'AIzaSyDQ3-rZzCs-LwixdPDzitmOBkGdiqjLDCg',
   authDomain: 'forsooth-27fe4.firebaseapp.com',
@@ -8,6 +9,7 @@ const firebaseConfig = {
   messagingSenderId: '558006587830',
   appId: '1:558006587830:web:727b8c4bb89a47f1873117'
 };
+
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
@@ -24,10 +26,10 @@ const playList = document.getElementById('playList');
 const playTitle = document.querySelector('#playTitle h1');
 const playerList = document.getElementById('playerList');
 const roleList = document.getElementById('characterList');
-document.getElementById('about').addEventListener('click', function(){});
-document.getElementById('reset').addEventListener('click', resetLower );
+//document.getElementById('about').addEventListener('click', function(){});
+//document.getElementById('reset').addEventListener('click', resetLower );
 
-document.getElementById('load').addEventListener('click', function(){});
+////////////////////////////////////////////////////////////////////// firebase functionality ///////////
 
 (function() {
   document.getElementById('save').addEventListener('click', function(){
@@ -49,16 +51,12 @@ document.getElementById('load').addEventListener('click', function(){});
       for (let savedPlay in allSavedPlays) {
         if(allSavedPlays[savedPlay].u === username){
           loadSavedPlay(allSavedPlays[savedPlay]);
-          break;
+          //break;
         }
       }
     });
   });
 })();
-
-
-document.getElementById('submit').addEventListener('click', sortPlays );
-
 
 
 
@@ -128,7 +126,10 @@ fetch('https://gist.githubusercontent.com/lmatrka/a78299e39648e7185344203d999f8e
     });
   });
 
- /////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////// play sorting functions ///////////
+
+document.getElementById('submit').addEventListener('click', sortPlays );
+
 function sortPlays(){
   playList.innerHTML = '';
   playerCount = parseInt(document.getElementById('players').value);
@@ -181,7 +182,7 @@ function characterDetails(play){
     charArray.push(activeScenes, numLines);
   });
 }
- /////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////// loading role assignment section //
 
 function loadPlay(play){
   playerList.innerHTML = '<h3>Players</h3>';
@@ -211,14 +212,20 @@ function loadRoles(play){
     role.addEventListener('click', function(){checkPlayers(index)});
     roleElements.push([role, 'X']);
     roleList.appendChild(role);
-    console.log(charArray);
   });
+  console.log(play.characters.all);
 }
 
- /////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////// checking and sorting roles ///////
 
 function checkPlayers(index){
   selectedRole = index;
+  roleElements.forEach(role => role[0].style = 'black');
+  roleElements[selectedRole][0].style.color = 'red';
+  /*roleElements[selectedRole][0].addEventListener('click', function(){
+    roleElements[selectedRole][1] = 'X';
+    sortRoles();
+  });*/
   playerButtons = document.querySelectorAll('#lower span');
   playerButtons.forEach((button, i) => {
     button.style.color = 'black';
@@ -238,6 +245,7 @@ function sortRoles(){
   assignedRoleLists.forEach(list => list.innerHTML = '');
   playerScenes.forEach(array => array.length = 0);
   roleElements.forEach((role, index) => {
+    role[0].style.color = 'black';
     if(role[1] === 'X'){
       roleList.appendChild(role[0]);
     }else{
@@ -253,7 +261,7 @@ function checkScenes(role, player){
   return playerScenes[player].some(r=> currentPlay.characters.all[role][1].includes(r));
 }
 
- /////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////// resets and load saved ///////////
 
 function loadSavedPlay(savedPlay){
   playerList.innerHTML = '<h3>Players</h3>';
@@ -290,7 +298,6 @@ function reset() {
   assignedRoleLists = 0;
   selectedRole = 0;
   playerButtons = 0;
-  console.log('reset');
 }
 
 
