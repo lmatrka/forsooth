@@ -15,7 +15,7 @@ max-width: 0px;
 }
 
 .unavail {
-color: darkgrey;
+color: slategrey;
 cursor: initial;
 }
 
@@ -152,10 +152,11 @@ transition: height 5000ms ease-in-out;
 
 #playList li { 
 background: white;
+padding: 3px;
 }
 
 #playList li:nth-child(odd) { 
-  background: oldlace; 
+  background: aliceblue; 
 }
 
 
