@@ -3,6 +3,34 @@
   margin: 0 auto;
 }
 
+.halfWidth {
+width: 500px;
+/* background-color: grey; */
+}
+
+.hidden {
+visibility: hidden;
+max-height: 0px;
+max-width: 0px;
+}
+
+.unavail {
+color: darkgrey;
+cursor: initial;
+}
+
+.avail {
+color: black;
+}
+
+.checkmark {
+float: right;
+}
+
+body {
+font-family: 'Oswald', sans-serif;
+}
+
 header {
   background-color: #FE052C;
   position: fixed;
@@ -10,6 +38,7 @@ header {
   left: 0;
   right: 0;
   display: inline-block;
+  z-index: 1;
 }
 
 header h1 {
@@ -24,7 +53,7 @@ header h1 {
 }
 
 header nav {
-  padding: 10px 2%;
+  padding: 19.5px 10px 10px 10px;
   width: 76%;
   float: right;
   text-align: right;
@@ -41,51 +70,92 @@ header ul {
 header li {
     max-width: 200px;
     display: inline;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    margin: 10px;
+}
+
+header li:nth-child(2) {
+  margin-left: 20px;
+}
+
+header li:nth-child(3) {
+  margin-right: 0px;
+  margin-left: 85px;
+}
+
+header li:nth-child(4) {
+  color: darkred;
+}
+
+header li:nth-child(5) {
+  margin-right: 0px;
+  margin-left: 0px;
+  color: darkred;
 }
 
 li {
-  cursor: pointer;
+cursor: pointer;
 }
 
-span {
-  cursor: pointer;
+form {
+height: 200px;
+position: relative;
 }
 
-#upper {
-  margin-top: 80px;
-  display: flex;
-  height: 400px;
+#upper input {
+margin: 10px;
+}
+
+input[type=button] {
+  position: absolute;
+  bottom: 0px;
+  margin: 0px 10px;
+}
+
+#username {
+  margin-right: 0px;
+  border-style: solid;
+  border-width: 3px;
+  border-color: darkred;
 }
 
 #lower {
-  display: flex;
+display: flex;
+visibility: hidden;
 }
 
-
-.halfWidth {
-    width: 500px;
-    /* background-color: grey; */
+#lower span {
+  position: relative;
+  top: 4px;
+  cursor: pointer;
+  font-size: 24px;
 }
 
-.hidden {
-  display: none;
-}
-
-.checkmark {
-    float: right;
+#upper {
+margin-top: 80px;
+display: flex;
+height: 300px;
+transition: height 5000ms ease-in-out;
 }
 
 #upper ul {
   overflow-y: auto;
-  max-height: 300px;
+  max-height: 200px;
+  width: 450px;
 }
 
-.unavail {
-  color: darkgrey;
+#upper span {
+  float: right;
 }
 
-.avail {
-  color: black;
+#playList li { 
+background: white;
+}
+
+#playList li:nth-child(odd) { 
+  background: oldlace; 
 }
 
 
@@ -93,3 +163,8 @@ span {
 width: 1000px;
 border-top: 1px solid red;
 }
+
+#groupName {
+margin-right: 0px;
+}
+

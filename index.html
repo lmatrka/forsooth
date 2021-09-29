@@ -9,29 +9,32 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="style.css" media="screen" charset="utf-8">
       <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+Double+Pica:ital@0;1&display=swap" rel="stylesheet">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=IM+Fell+Double+Pica:ital@0;1&family=Oswald:wght@400;600&display=swap" rel="stylesheet">
 
     </head>
 
     <body>
 
         <header>
-            <section class="container">
-              <a href="#"><h1>Forsooth</h1></a>
-              <nav>
-                <ul>
-                  <li><a href="#">About</a></li>
-                  <li><a href="#">Reset</a></li>
-                </ul>
-              </nav>
-            </section>
-          </header>
+          <section class="container">
+            <a href="#"><h1>Forsooth</h1></a>
+            <nav>
+              <ul>
+                <li id="about">About</a></li>
+                <li id="reset">Reset</a></li>
+                <li><input type="text" id="username" placeholder="Group Name"></li>
+                <li id="load">>Load</a></li>
+                <li id="save">>Save</a></li>
+              </ul>
+            </nav>
+          </section>
+        </header>
 
         <div id="upper" class="container">
             <section id="playerOptions" class="halfWidth">
                 <h3>Role Assignment Options</h3>
-                <form name="optionsForm">
+                <form id="optionsForm">
                     <label for="players">How Many Players?</label>
                     <input type="text" id="players" name="players"><br>
                     <input type="radio" id="single" name="duplicateRoles" checked>
@@ -43,27 +46,35 @@
                     <input type="button" id="submit" value="Submit">
                   </form>
             </section>
-            <section id="playOptions" class="halfWdith">
+            <section id="playOptions" class="halfWidth">
                 <h3>Available Plays</h3>
                 <ul id="playList"></ul>
             </section>
         </div>
-        <div id="playTitle" class="container"><h1></h1></div>
+        <div id="playTitle" class="container">
+          <h1></h1>
+        </div>
         <div id="lower" class="container">
           <div id="playerList" class="halfWidth">
-            <h3>Players</h3><br>
+            
             <!-- <input type="text" id="player" placeholder="player 1"><br>
             <ul id="player1" class="assignedRoles"></ul> -->
           </div>
-          <div id="roles" class="halfWdith">
+          <div id="roles" class="halfWidth">
             <h3>Roles</h3>
             <ul id="characterList"></ul>
           </div>
         </div>
 
-
-
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+          
+           <!-- The core Firebase JS SDK is always required and must be listed first -->
+          <script src="https://www.gstatic.com/firebasejs/7.3.0/firebase-app.js"></script>
+
+            <!-- TODO: Add SDKs for Firebase products that you want to use
+           https://firebase.google.com/docs/web/setup#available-libraries -->
+          <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-database.js"></script>
+          
           <script src="scratch1.js"></script>
     </body>
 </html>
